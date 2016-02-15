@@ -1,0 +1,29 @@
+/* Web project main css */ 
+
+.ask-your{
+	background: url("../img/q-signs.jpg") no-repeat center; 
+}
+
+.ask-your h1 {
+	color: rgb(0,0,0);
+}
+
+.ask-your p {
+	color: rgb(0,0,0);
+}
+
+.ask-your:hover{
+	box-shadow: 10px 10px 10px 10px black;
+}
+
+.q-row{
+	background-color: rgb(255, 102, 102);
+	border-radius: 5px 5px 5px 5px;
+	margin: 1% 3% 1% 1%;
+}
+
+.leader-row{
+	background-color: rgb(153, 102, 255);
+	border-radius: 10px 10px 10px 10px;
+	margin: 0 0 2% 2%;
+}

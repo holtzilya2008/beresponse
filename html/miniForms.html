@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+ 	<!-- Critical browser adjustment tags -->
+ 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ 	<!-- Page properties -->
+	<meta name="description" content="beResponse mini forms for main page">
+    <meta name="author" content="Ilya Holtz and Vladimir Dzhorniuk">
+	<title>miniforms</title>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="../css/miniforms.css">
+	<link rel="stylesheet" type="text/css" href="../css/normalize.css">
+ </head>
+ 
+ <body>
+   <div class="container">   <!-- Main contsiner for grid -->
+      <div class="row">
+        <div class="col-md-8">    <!-- Question col -->
+          
+          <div class="question-mini">
+
+            <div class="row">  <!-- Question head mini -->
+              <div class="col-md-4">
+                <h4 class="username-askes"><a href="#">Eskimos</a> askes:</h4>
+              </div>
+              <div class="col-md-8 q-time-mini">
+                <p>Question time DD/MM/YY HH:MM</p>
+              </div>
+            </div>  <!-- Question head mini -->
+
+            <div class="media">
+              <div class="media-left">
+                <a href="#">
+                  <img class="media-object" src="../img/tux.png" alt="user avatar">
+                </a>
+              </div>
+              <div class="media-body question-body-mini">
+                <h3 class="media-heading"><a href="#">Question Title Question Title Question Title</a></h3>
+                <p>Question text Question text Question text Question text  Question text Question text Question text Question text?</p>
+
+                  <div class="media first-reply">
+                    <div class="media-left">
+                      <a href="#">
+                        <img class="media-object" src="../img/lux.png" alt="first reply user avatar">
+                      </a>
+                    </div>
+                    <div class="media-body first-reply-body">
+                      <h4 class="username-says"><a href="#">Kokos</a> says:</h4>
+                      <p>Highest reply text Highest reply text  Highest reply text Highest reply text Highest reply text Highest reply text Highest reply text Highest reply text </p>
+                    </div>                  
+                  </div>
+              </div>
+              <div class="media-right ">
+                <table class="media-object q-rating-bar">
+                  <tr><a href="#" class="rate-up"> <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a></tr>
+                  <tr><p class="rating-text"> 4 / 7 </p></tr>
+                  <tr><a href="#" class="rate-down"> <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></a></tr>
+                </table>
+              </div>
+            </div> 
+            <div class="row topics-row-mini">  <!-- Question topics mini  -->
+              <ul>
+                <li><a href="#"><span class="label label-default">Topic1</span></li></a>
+                <li><a href="#"><span class="label label-default">Topic2</span></li></a>
+                <li><a href="#"><span class="label label-default">Topic3</span></li></a>
+                <li><a href="#"><span class="label label-default">Topic4</span></li></a>
+                <li><a href="#"><span class="label label-default">Topic5</span></li></a>
+              </ul>
+            </div>   <!-- Question topics mini  -->
+          
+          </div>    <!-- .question-mini  -->
+        </div> <!-- Question col -->
+          
+        <div class="col-md-4">    <!-- User col -->
+
+          <a href="#" class="user-mini thumbnail">
+           <table>
+             <tr>
+               <td class="user-properties-mini">
+                  <a href="#"><h3>Cheburator</h3></a>
+                  <a href="#"><img src="../img/cheburator.gif" alt="user leaderboard avatar"></a>
+                  <p>User Rating 6/7</p>
+               </td>
+               <td class="user-topics-mini">
+                  <ul>
+                    <li><a href="#"><span class="label label-default">Topic1</span></li></a>
+                    <li><a href="#"><span class="label label-default">velikiy cheburator nah </span></li></a>
+                    <li><a href="#"><span class="label label-default">Topic3</span></li></a>
+                    <li><a href="#"><span class="label label-default">Topic4</span></li></a>
+                    <li><a href="#"><span class="label label-default">Topic5</span></li></a>
+                  </ul>
+               </td>
+             </tr>
+           </table> 
+          </a> <!-- user mini -->
+
+        </div> <!-- col-md-4 - column for user-mini -->
+      </div>    <!-- main row -->
+    </div>    <!-- main container -->
+
+	<!-- Bootstrap javascript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+ </body>
+</html>
