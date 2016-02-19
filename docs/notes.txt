@@ -1,0 +1,17 @@
+Notes for Web App development project
+-------------------------------------
+
+CQA service 
+- need to support diferent topics,  any topics
+smart organization of the topics in the database and in the 
+web pages
+
+Name: beResponse
+
+- Go to site -> it show you login screen
+- you login -> you transfered to Main applications UI
+- the page simply contained 20 questions (not like facebook news feed)
+- 
+The perfect example is Stack overflow
+
+idea: when you pick a topic the background changes
