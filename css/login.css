@@ -1,0 +1,84 @@
+/* Web CQA project - miniforms stylesheet */
+
+
+body {
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+/* =========================================================================
+	Question mini form 
+   ========================================================================= */
+
+.question-mini{
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 5px;
+	border-color: rgb(153,153,153); /* gray 60 */
+	width: 95%;
+}
+
+.q-time-mini{
+	text-align: right;
+	color: blue;
+}
+
+.question-body-mini p{
+	color: black;
+	background-color: rgb(135,206,250); /* lightskyblue (sky) */
+}
+
+.q-rating-bar{
+	min-width: 64px;
+}
+	.rating-text{
+		text-align: center;
+		font-style: rgb(135,206,250);
+		font-size: 1.5em;
+	}
+	.rate-up{
+		text-align: center;
+		display: block;
+		font-size: 1.5em;
+	}
+	.rate-down{
+		text-align: center;
+		display: block;
+		font-size: 1.5em;
+	}
+
+.topics-row-mini ul{
+	list-style-type: none;
+}
+
+	.topics-row-mini ul li{
+	display: inline-block;
+	margin-left: 1%;
+}
+
+.first-reply p{
+	background-color: rgb(211,211,211);  /*lightgrey*/
+}
+
+/* =========================================================================
+	User mini form
+   ========================================================================= */
+
+.user-mini{
+	border-style: solid;
+	border-width: 5px;
+	border-radius: 10px;
+	border-color: rgb(0,255,127); /* springgreen */
+	max-width: 98%;
+	min-width: 70%;
+	overflow: hidden;
+}
+
+.user-properties-mini{
+	text-align: center;
+}	
+	.user-topics-mini ul{
+		list-style-type: none;
+	}
+		.user-topics-mini ul li{
+			margin-bottom: 2px;
+		}
