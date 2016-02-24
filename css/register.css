@@ -1,0 +1,43 @@
+/* Web CQA project - Login and register stylesheet */
+
+
+body {
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+/* =========================================================================
+	registration and login form:
+   ========================================================================= */
+
+.reg-container{
+	text-align: center;
+	align-content: center;
+	align-items: center;
+}
+
+.logo-big{
+	max-width: 330px;
+}
+
+.register-form{
+	max-width: 550px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.register-form-heading{
+	margin-bottom: 20px;
+}
+
+	.register-form .form-control {
+	  position: relative;
+	  height: auto;
+	  -webkit-box-sizing: border-box;
+	     -moz-box-sizing: border-box;
+	          box-sizing: border-box;
+	  padding: 10px;
+	  margin-bottom: 2%;
+	  font-size: 1.5em;
+	}
+
+

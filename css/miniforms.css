@@ -1,15 +1,11 @@
 /* Web CQA project - miniforms stylesheet */
 
-
-body {
-	font-family: Verdana, Geneva, sans-serif;
-}
-
 /* =========================================================================
 	Question mini form 
    ========================================================================= */
 
 .question-mini{
+	font-family: Verdana, Geneva, sans-serif;
 	border-style: solid;
 	border-width: 1px;
 	border-radius: 5px;
@@ -64,6 +60,7 @@ body {
    ========================================================================= */
 
 .user-mini{
+	font-family: Verdana, Geneva, sans-serif;
 	border-style: solid;
 	border-width: 5px;
 	border-radius: 10px;

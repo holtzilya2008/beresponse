@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="beResponseApp">
  <head>
  	<!-- Critical browser adjustment tags -->
  	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -19,9 +19,11 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/miniforms.css">
+
  </head>
  
- <body>
+ <body ng-controller="QuestionListCtrl">
     <nav class="navbar navbar-inverse">
       <div class="container">
         <div class="navbar-header">
@@ -58,125 +60,70 @@
 
    	<div class="container"> <!-- Main container -->
    		<div class="row">
-   			<div class="col-xs-12 col-sm-9" id="questions-col">
-   				<div class="row q-row">
-   					<div class="col-sm-12">
-   						<h3>Question 1</h3>
-   						<p>question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text ...</p>
-   					</div>
-   				</div>		
-   				   				<div class="row q-row">
-   					<div class="col-sm-12">
-   						<h3>Question 2</h3>
-   						<p>question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text ...</p>
-   					</div>
-   				</div>	
-   				   				<div class="row q-row">
-   					<div class="col-sm-12">
-   						<h3>Question 3</h3>
-   						<p>question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text ...</p>
-   					</div>
-   				</div>	
-   				   				<div class="row q-row">
-   					<div class="col-sm-12">
-   						<h3>Question 4</h3>
-   						<p>question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text ...</p>
-   					</div>
-   				</div>	
-   				   				<div class="row q-row">
-   					<div class="col-sm-12">
-   						<h3>Question 5</h3>
-   						<p>question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text ...</p>
-   					</div>
-   				</div>	
-   				   				<div class="row q-row">
-   					<div class="col-sm-12">
-   						<h3>Question 6</h3>
-   						<p>question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text question text ...</p>
-   					</div>
-   				</div>			   				
+   			<div class="col-md-8" id="questions-list">
+
+          <div class="row" ng-repeat="question in questions">
+            <div class="question-mini">
+              <div class="row">  <!-- Question head mini -->
+                <div class="col-md-4">
+                  <h4 class="username-askes"><a href="#">{{question.username}}</a> askes:</h4>
+                </div>
+                <div class="col-md-8 q-time-mini">
+                  <p>at {{question.time}}</p>
+                </div>
+              </div>  <!-- Question head mini -->
+
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object" src="{{question.userphoto}}" alt="user avatar">
+                  </a>
+                </div>
+                <div class="media-body question-body-mini">
+                  <h3 class="media-heading"><a href="#">{{question.title}}</a></h3>
+                  <p>{{question.text}}</p>
+
+                    <div class="media first-reply">
+                      <div class="media-left">
+                        <a href="#">
+                          <img class="media-object" src="../img/lux.png" alt="first reply user avatar">
+                        </a>
+                      </div>
+                      <div class="media-body first-reply-body">
+                        <h4 class="username-says"><a href="#">Kokos</a> says:</h4>
+                        <p>Highest reply text Highest reply text  Highest reply text Highest reply text Highest reply text Highest reply text Highest reply text Highest reply text </p>
+                      </div>                  
+                    </div>
+                </div>
+                <div class="media-right ">
+                  <table class="media-object q-rating-bar">
+                    <tr><a href="#" class="rate-up"> <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a></tr>
+                    <tr><p class="rating-text"> 4 / 7 </p></tr>
+                    <tr><a href="#" class="rate-down"> <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></a></tr>
+                  </table>
+                </div>
+              </div> 
+              <div class="row topics-row-mini">  <!-- Question topics mini  -->
+                <ul>
+                  <li><a href="#"><span class="label label-default">Topic1</span></li></a>
+                  <li><a href="#"><span class="label label-default">Topic2</span></li></a>
+                  <li><a href="#"><span class="label label-default">Topic3</span></li></a>
+                  <li><a href="#"><span class="label label-default">Topic4</span></li></a>
+                  <li><a href="#"><span class="label label-default">Topic5</span></li></a>
+                </ul>
+              </div>   <!-- Question topics mini  -->
+            
+            </div>    <!-- .question-mini  -->
+            
+          </div>
+
    			</div>
 
-   			<div class="col-sm-3" id="leaderboard">
-   				<div class="row leader-row">
-   					<div class="col-sm-12">
-   						<h5>User 1</h5>
-   						<h6>Name: username 1</h6>
-   						<h6>Rating: 5/6</h6>
-   					</div>
-   				</div>
-   				<div class="row leader-row">
-   					<div class="col-sm-12">
-   						<h5>User 1</h5>
-   						<h6>Name: username 1</h6>
-   						<h6>Rating: 5/6</h6>
-   					</div>
-   				</div>
-   				<div class="row leader-row">
-   					<div class="col-sm-12">
-   						<h5>User 1</h5>
-   						<h6>Name: username 1</h6>
-   						<h6>Rating: 5/6</h6>
-   					</div>
-   				</div>
-   				<div class="row leader-row">
-   					<div class="col-sm-12">
-   						<h5>User 1</h5>
-   						<h6>Name: username 1</h6>
-   						<h6>Rating: 5/6</h6>
-   					</div>
-   				</div>
-   				<div class="row leader-row">
-   					<div class="col-sm-12">
-   						<h5>User 1</h5>
-   						<h6>Name: username 1</h6>
-   						<h6>Rating: 5/6</h6>
-   					</div>
-   				</div>
-   				<div class="row leader-row">
-   					<div class="col-sm-12">
-   						<h5>User 1</h5>
-   						<h6>Name: username 1</h6>
-   						<h6>Rating: 5/6</h6>
-   					</div>
-   				</div>
-   				<div class="row leader-row">
-   					<div class="col-sm-12">
-   						<h5>User 1</h5>
-   						<h6>Name: username 1</h6>
-   						<h6>Rating: 5/6</h6>
-   					</div>
-   				</div>
-   				<div class="row leader-row">
-   					<div class="col-sm-12">
-   						<h5>User 1</h5>
-   						<h6>Name: username 1</h6>
-   						<h6>Rating: 5/6</h6>
-   					</div>
-   				</div>
-   				<div class="row leader-row">
-   					<div class="col-sm-12">
-   						<h5>User 1</h5>
-   						<h6>Name: username 1</h6>
-   						<h6>Rating: 5/6</h6>
-   					</div>
-   				</div>
+   			<div class="col-md-4" id="leaderboard">
    			</div>
    			
    		</div> <!-- Main row -->
    	</div> <!-- main container -->
-
-    <!-- Old code:
- 	<header>
- 		<img src="#beresponseLogo" alt="beResponse Logo" class="main-logo">
- 		<a href="http://www.google.com/"><button class="ask-btn">Ask your question</button></a>
- 		<div class="current-user">
- 			<img src="#userImage" alt="user's profile image">
- 			<h4 class="u-name">Current</h4>
- 			<h4 class="u-rating">5/7</h4>
- 		</div>
- 	</header>
- 	-->
 
    <footer>
     	<div class="container">
@@ -191,8 +138,15 @@
     	</div>
 	</footer>
 
-	<!-- Bootstrap javascript -->
+  <!-- My Scripts -->
+
+  <!-- Bootstrap javascript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    <!-- Angular -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script src="js/controllers.js"></script>
 
  </body>
 </html>
