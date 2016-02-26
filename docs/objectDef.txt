@@ -1,37 +1,3 @@
-Work plan:
-
-1) Each developer will try working with the givven environment
-learn the basics, develop a very simple web application according to a tutorial from youtube or something.
-Recall all concepts and technologies we studied in class.
-Even better is also fully understand thow to use git and gitHub.
-
-form 10.01.2016        to 14.01.2016
-
-2) on 15.01.2016
-we will open a project "beResponse" in eclipse on a single computer,
-start writing some code together, make a gitHub repository
-and open two separate branches on different computers.
-Then we"ll do furture planning of who is doing what.
-
-11.02.2016
-
-DONE Learn carefully stackoverflow html and design
-DONE Search for video tutorials about bootstrap design and watch them DONE build design for the folowing
-	DONE Question-mini
-	DONE User mini (for LeaderBoard)
-	DONE Question Submission page
-	DONE User profile page 
-	* UI-Operation pages 
-DONE Watch Angular-JS videos	
-DONE Build javascript that can get an html element and build a array of those dynamically
-DONE Learn how take data from database and get it inside the app using JS and tools we learned
-
-
-17/02/2016 Design
-DONE registration page:
-- Single question page ( Like in StackOverflow
-and also what is written above...
-
 25/02/2016
 
 object definition:
@@ -191,26 +157,3 @@ Register - Response{UserMini};
 Get20QuestionsByTopic - Request{topicId,page-number}
 Get20QuestionsByTopic - Response {Array questions[20]}
 
-26/02/2016
-Actions: 
-1)	Homepage - new submitted questions view
-		template : questions-list.html
-2)  Ask your question - Ask question form
-		template : ask-your.html
-3)  Browse existing questions sorted by rating 
-		template : questions-list.html
-4)  Leaderboard
-		template : leaderboard.html
-5)  Questions by topics  - list of topics will be shown
-		template : topics-list.html
-
-Events: 
-101) On topic click - A list of questions related to that hopic will appear
-		template : questions-list.html
-102) On user click - User profile page will appear
-		template : user-profile.html
-103) On question click - The current question profile will appear
-		template : question-full.html
-104) On Reply click - Reply form will appear
-
-		

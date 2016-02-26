@@ -23,7 +23,8 @@
 
  </head>
  
- <body ng-controller="QuestionListCtrl">
+ <body ng-controller="NewQuestionListCtrl">
+
     <nav class="navbar navbar-inverse">
       <div class="container">
         <div class="navbar-header">
@@ -38,104 +39,62 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#/about">About</a></li>
+            <li><a href="#/contact">Contact</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
     </nav><!-- /.navbar -->
 
     <header>
-    	<div class="container">  	<!-- Ask your question container -->
-    		<div class="row"> 
-    			<div class="col-sm-12">
-    				 <a href="http://www.google.com"><div class="jumbotron ask-your">
-            <h1 class="text-center">Ask Your Question</h1>
-            <p class="text-center">beResponse (c)</p>
-          </div></a>
-    			</div>
-    		</div>
+    	<div class="container ask-your">  	<!-- Ask your question container -->
+           <div class="row"></div>
+            <div class="col-md-8">
+              <img src="../img/beresponse_logo_lg.png" alt="beResponse big Logo" class="logo-big">
+            </div>
+            <div class="col-md-4">
+              <div class="row current-user-row">
+                <a href="#" class="user-mini thumbnail">
+                 <table>
+                   <tr>
+                     <td class="user-properties-mini">
+                        <a href="#"><h3>Cheburator</h3></a>
+                        <a href="#"><img src="../img/cheburator.gif" alt="user leaderboard avatar"></a>
+                        <p>User Rating 6/7</p>
+                     </td>
+                     <td class="user-topics-mini">
+                        <ul>
+                          <li><a href="#"><span class="label label-default">Topic1</span></li></a>
+                          <li><a href="#"><span class="label label-default">velikiy cheburator nah </span></li></a>
+                          <li><a href="#"><span class="label label-default">Topic3</span></li></a>
+                          <li><a href="#"><span class="label label-default">Topic4</span></li></a>
+                          <li><a href="#"><span class="label label-default">Topic5</span></li></a>
+                        </ul>
+                     </td>
+                   </tr>
+                 </table> 
+                </a> <!-- user mini -->
+              </div>
+              <div class="row">
+                <a class="btn btn-primary text-center btn-lg" href="#" role="button">Ask Your Question</a>
+              </div>
+            </div>
+          </div>
     	</div>		  	<!-- Ask your question container -->
     </header>
 
    	<div class="container"> <!-- Main container -->
    		<div class="row">
-   			<div class="col-md-8" id="questions-list">
-
-          <div class="row" ng-repeat="question in questions">
-            <div class="question-mini">
-              <div class="row">  <!-- Question head mini -->
-                <div class="col-md-4">
-                  <h4 class="username-askes"><a href="#">{{question.username}}</a> askes:</h4>
-                </div>
-                <div class="col-md-8 q-time-mini">
-                  <p>at {{question.time}}</p>
-                </div>
-              </div>  <!-- Question head mini -->
-
-              <div class="media">
-                <div class="media-left">
-                  <a href="#">
-                    <img class="media-object" src="{{question.userphoto}}" alt="user avatar">
-                  </a>
-                </div>
-                <div class="media-body question-body-mini">
-                  <h3 class="media-heading"><a href="#">{{question.title}}</a></h3>
-                  <p>{{question.text}}</p>
-
-                    <div class="media first-reply">
-                      <div class="media-left">
-                        <a href="#">
-                          <img class="media-object" src="../img/lux.png" alt="first reply user avatar">
-                        </a>
-                      </div>
-                      <div class="media-body first-reply-body">
-                        <h4 class="username-says"><a href="#">Kokos</a> says:</h4>
-                        <p>Highest reply text Highest reply text  Highest reply text Highest reply text Highest reply text Highest reply text Highest reply text Highest reply text </p>
-                      </div>                  
-                    </div>
-                </div>
-                <div class="media-right ">
-                  <table class="media-object q-rating-bar">
-                    <tr><a href="#" class="rate-up"> <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a></tr>
-                    <tr><p class="rating-text"> 4 / 7 </p></tr>
-                    <tr><a href="#" class="rate-down"> <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></a></tr>
-                  </table>
-                </div>
-              </div> 
-              <div class="row topics-row-mini">  <!-- Question topics mini  -->
-                <ul>
-                  <li><a href="#"><span class="label label-default">Topic1</span></li></a>
-                  <li><a href="#"><span class="label label-default">Topic2</span></li></a>
-                  <li><a href="#"><span class="label label-default">Topic3</span></li></a>
-                  <li><a href="#"><span class="label label-default">Topic4</span></li></a>
-                  <li><a href="#"><span class="label label-default">Topic5</span></li></a>
-                </ul>
-              </div>   <!-- Question topics mini  -->
-            
-            </div>    <!-- .question-mini  -->
-            
-          </div>
-
-   			</div>
-
-   			<div class="col-md-4" id="leaderboard">
-   			</div>
-   			
+        <ng-view></ng-view>
    		</div> <!-- Main row -->
    	</div> <!-- main container -->
 
    <footer>
-    	<div class="container">
-    		<div class="row"> 
-    			<div class="col-sm-12">
-    				 <a href="http://www.google.com"><div class="jumbotron ask-your">
-            <h1 class="text-center">Ask Your Question</h1>
-            <p class="text-center">beResponse (c)</p>
-          </div></a>
-    			</div>
-    		</div>
-    	</div>
+      <div class="container ask-your">    <!-- Ask your question container -->
+        <div class="row"> 
+            <a class="btn btn-primary text-center btn-lg" href="#" role="button">Ask Your Question</a>
+          </div>
+      </div>        <!-- Ask your question container -->
 	</footer>
 
   <!-- My Scripts -->
@@ -146,6 +105,9 @@
     <!-- Angular -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+<!--   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-route.js
+"></script> -->
   <script src="js/controllers.js"></script>
 
  </body>

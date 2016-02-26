@@ -7,9 +7,52 @@
 */
 
 /* Controllers */
-var beResponseApp = angular.module('beResponseApp', []);
+var beResponseApp = angular.module('beResponseApp', ['ngRoute']);
 
-beResponseApp.controller('QuestionListCtrl',['$scope','$http', '$location', function($scope,$http,$location) {$scope.title = 'Телефоны';
+beResponseApp.config(['$routeProvider', '$locationProvider', function($routeProvide, $locationProvider){
+  $routeProvide
+      .when('/',{
+        templateUrl:'html/questions-list.html',
+        controller:'NewQuestionListCtrl'
+      })
+      .when('/ask-your',{  //TODO
+        templateUrl:'html/ask-your.html',
+        controller:'AskYourCtrl'
+      })
+      .when('/existing',{  //TODO
+        templateUrl:'html/questions-list.html',
+        controller:'ExistingCtrl'
+      })
+      .when('/leaderboard',{	//TODO
+        templateUrl:'html/leaderboard.html',
+        controller:'LeaderboardCtrl'
+      })      
+      .when('/topics-list',{  //TODO
+        templateUrl:'html/topics-list.html',
+        controller:'TopicsListCtrl'
+      })
+      .when('/topics/:topicId', {  //TODO
+        templateUrl:'html/questions-list.html',
+        controller:'QuestionsOnTopicCtrl'
+      })       
+      .when('/users/:userId', {  //TODO
+        templateUrl:'html/user-profile.html',
+        controller:'UserProfileCtrl'
+      })             
+      .when('/questions/:questionId', {  //TODO
+        templateUrl:'html/question-full.html',
+        controller:'QuestionsFullCtrl'
+      })
+      .when('/about',{
+        templateUrl:'html/about.html',
+        controller:'AboutCtrl'
+      })
+      .otherwise({
+        redirectTo: '/'
+      });
+}]);
+
+beResponseApp.controller('NewQuestionListCtrl',['$scope','$http', '$location', function($scope,$http,$location) {$scope.title = 'Телефоны';
 
     $http.get('json/questions.json').success(function(data, status, headers, config) {
         $scope.questions = data;
@@ -17,69 +60,44 @@ beResponseApp.controller('QuestionListCtrl',['$scope','$http', '$location', func
 
 }]);
 
-// beResponseApp.controller('QuestionListCtrl',['$scope', function($scope){
-// 	$scope.title = 'List of Questions';
-// 	$scope.questions = [
-// 		{'username': 'Eskimos1',
-// 		 'userphoto': 'img/tux.png',
-// 		 'time': '20/02/2016 at 16:00',
-// 		 'title': 'Pochemu eskimos ebet kokos?',
-// 		 'text': 'The Edmonton Eskimos are a professional Canadian football team based in Edmonton, Alberta, competing in the West Division of the Canadian Football League (CFL). The Eskimos play their home games at Commonwealth Stadium and are the third-youngest franchise in the CFL. The Eskimos were founded in 1949, although there were clubs with the name Edmonton Eskimos as early as 1895. The Eskimos are the most successful CFL franchise of the modern era (1954) having won the league's Grey Cup championship fourteen times, second overall only to the Toronto Argonauts who',
-// 		 'rating': '6 / 7'
-// 		},
-// 		{'username': 'Eskimos2',
-// 		 'userphoto': 'img/tux.png',
-// 		 'time': '20/02/2016 at 16:00',
-// 		 'title': 'Pochemu eskimos ebet kokos?',
-// 		 'text': 'The Edmonton Eskimos are a professional Canadian football team based in Edmonton, Alberta, competing in the West Division of the Canadian Football League (CFL). The Eskimos play their home games at Commonwealth Stadium and are the third-youngest franchise in the CFL. The Eskimos were founded in 1949, although there were clubs with the name Edmonton Eskimos as early as 1895. The Eskimos are the most successful CFL franchise of the modern era (1954) having won the league's Grey Cup championship fourteen times, second overall only to the Toronto Argonauts who',
-// 		 'rating': '6 / 7'
-// 		},
-// 		{'username': 'Eskimos3',
-// 		 'userphoto': 'img/tux.png',
-// 		 'time': '20/02/2016 at 16:00',
-// 		 'title': 'Pochemu eskimos ebet kokos?',
-// 		 'text': 'The Edmonton Eskimos are a professional Canadian football team based in Edmonton, Alberta, competing in the West Division of the Canadian Football League (CFL). The Eskimos play their home games at Commonwealth Stadium and are the third-youngest franchise in the CFL. The Eskimos were founded in 1949, although there were clubs with the name Edmonton Eskimos as early as 1895. The Eskimos are the most successful CFL franchise of the modern era (1954) having won the league's Grey Cup championship fourteen times, second overall only to the Toronto Argonauts who',
-// 		 'rating': '6 / 7'
-// 		},
-// 		{'username': 'Eskimos4',
-// 		 'userphoto': 'img/tux.png',
-// 		 'time': '20/02/2016 at 16:00',
-// 		 'title': 'Pochemu eskimos ebet kokos?',
-// 		 'text': 'The Edmonton Eskimos are a professional Canadian football team based in Edmonton, Alberta, competing in the West Division of the Canadian Football League (CFL). The Eskimos play their home games at Commonwealth Stadium and are the third-youngest franchise in the CFL. The Eskimos were founded in 1949, although there were clubs with the name Edmonton Eskimos as early as 1895. The Eskimos are the most successful CFL franchise of the modern era (1954) having won the league's Grey Cup championship fourteen times, second overall only to the Toronto Argonauts who',
-// 		 'rating': '6 / 7'
-// 		},
-// 		{'username': 'Eskimos5',
-// 		 'userphoto': 'img/tux.png',
-// 		 'time': '20/02/2016 at 16:00',
-// 		 'title': 'Pochemu eskimos ebet kokos?',
-// 		 'text': 'The Edmonton Eskimos are a professional Canadian football team based in Edmonton, Alberta, competing in the West Division of the Canadian Football League (CFL). The Eskimos play their home games at Commonwealth Stadium and are the third-youngest franchise in the CFL. The Eskimos were founded in 1949, although there were clubs with the name Edmonton Eskimos as early as 1895. The Eskimos are the most successful CFL franchise of the modern era (1954) having won the league's Grey Cup championship fourteen times, second overall only to the Toronto Argonauts who',
-// 		 'rating': '6 / 7'
-// 		}
-// 	];
-// 	$scope.replys = [
-// 		{'username': 'Kokos1',
-// 		 'userphoto': '../img/lux.png',
-// 		 'text': 'Cheburator mudak!'
-// 		},
-// 		{'username': 'Kokos2',
-// 		 'userphoto': '../img/lux.png',
-// 		 'text': 'Cheburator mudak!'
-// 		},
-// 		{'username': 'Kokos3',
-// 		 'userphoto': '../img/lux.png',
-// 		 'text': 'Cheburator mudak!'
-// 		},
-// 		{'username': 'Kokos4',
-// 		 'userphoto': '../img/lux.png',
-// 		 'text': 'Cheburator mudak!'
-// 		},
-// 		{'username': 'Kokos5',
-// 		 'userphoto': '../img/lux.png',
-// 		 'text': 'Cheburator mudak!'
-// 		}				
-// 	];
-// }])
+//Ask Your Question Controller
+beResponseApp.controller('AskYourCtrl',['$scope','$http', '$location', function($scope, $http, $location) {
 
+}]);
 
+//Browse Existing Questions Controller
+beResponseApp.controller('ExistingCtrl',['$scope','$http', '$location', function($scope, $http, $location) {
+
+}]);
+
+//Leaderboard Controller
+beResponseApp.controller('LeaderboardCtrl',['$scope','$http', '$location', function($scope, $http, $location) {
+
+}]);
+
+//Browse Questions by Topics Controller
+beResponseApp.controller('TopicsListCtrl',['$scope','$http', '$location', function($scope, $http, $location) {
+
+}]);
+
+//Question List on a specific topic Controller
+beResponseApp.controller('QuestionsOnTopicCtrl',['$scope','$http', '$location', function($scope, $http, $location) {
+
+}]);
+
+//User Profile Controller
+beResponseApp.controller('UserProfileCtrl',['$scope','$http', '$location', function($scope, $http, $location) {
+
+}]);
+
+//Question full Controller
+beResponseApp.controller('QuestionsFullCtrl',['$scope','$http', '$location', function($scope, $http, $location) {
+
+}]);
+
+//About Controller
+beResponseApp.controller('AboutCtrl',['$scope','$http', '$location', function($scope, $http, $location) {
+
+}]);
 
 

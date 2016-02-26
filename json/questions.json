@@ -5,7 +5,15 @@
         "userphoto": "img/tux.png", 
         "title": "Pochemu eskimos ebet kokos?", 
         "text": "The Edmonton Eskimos are a professional Canadian football team based in Edmonton, Alberta, competing in the West Division of the Canadian Football League (CFL). The Eskimos play their home games at Commonwealth Stadium and are the third-youngest franchise in the CFL. The Eskimos were founded in 1949, although there were clubs with the name Edmonton Eskimos as early as 1895. The Eskimos are the most successful CFL franchise of the modern era (1954) having won the league's Grey Cup championship fourteen times, second overall only to the Toronto Argonauts who",
-        "rating": "6 / 7"
+        "rating": "6.1",
+        "topics": ["pizdezh","poeben","xueta polnaya","Kusssammok!!!","Medved pizdanulso ob pen"],
+        "replies": [
+	        	{
+	        	 "username": "Kokos", 
+	        	 "userphoto": "img/lux.png", 
+	        	 "text": "Cheburator loh"
+	        	}
+        	]
     }, 
     {
         "username": "Eskimos2", 
@@ -13,7 +21,15 @@
         "userphoto": "img/tux.png", 
         "title": "Otkuda berutsa deti???", 
         "text": "prosto interesuyus",
-        "rating": "1 / 7"
+        "rating": "1.1",
+        "topics": ["pizdezh","poeben","xueta polnaya","Kusssammok!!!","Sfatum Ci"],
+        "replies": [
+	        	{
+	        	 "username": "Cheburator", 
+	        	 "userphoto": "img/cheburator.gif", 
+	        	 "text": "Xuy ego znaet..."
+	        	}
+        	]
     }
 ]
 

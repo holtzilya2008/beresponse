@@ -1,19 +1,14 @@
 /* Web CQA project - main css */ 
 
+
+
 .ask-your{
-	background: url("../img/q-signs.jpg") no-repeat center; 
-}
-
-.ask-your h1 {
-	color: rgb(0,0,0);
-}
-
-.ask-your p {
-	color: rgb(0,0,0);
-}
-
-.ask-your:hover{
-	box-shadow: 10px 10px 10px 10px black;
+	text-align: center;
+	align-items: center;
+	align-content: center;
+	align-self: center;
+	margin-top: 5%;
+	margin-bottom: 2%;
 }
 
 .q-row{
@@ -26,4 +21,13 @@
 	background-color: rgb(153, 102, 255);
 	border-radius: 10px 10px 10px 10px;
 	margin: 0 0 2% 2%;
+}
+
+.current-user-row{
+	 text-align: center;
+	 align-items: center;
+}
+
+.logo-big{
+	width: 80%;
 }
