@@ -192,6 +192,7 @@ Get20QuestionsByTopic - Request{topicId,page-number}
 Get20QuestionsByTopic - Response {Array questions[20]}
 
 26/02/2016
+
 Actions: 
 1)	Homepage - new submitted questions view
 		template : questions-list.html
@@ -213,4 +214,12 @@ Events:
 		template : question-full.html
 104) On Reply click - Reply form will appear
 
-		
+Furture plan:
+	 DONE MAke the QuestionListCtrl ready for getting info from server by RESTful API
+	 DONE Make the AskNewCtrl ready for adding new question to Database
+	 - Replace all #/links to HTML5 format
+	 - Manage a place to hold the current user in
+	 - Integrate LogIn and Register operations into the app
+	 - design pagination on the question/topics
+	 - Design the QuestionFull List and work on the Reply issue
+	 - Finish design and check if all requirements are checked

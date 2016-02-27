@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
  	<!-- Page properties -->
-	<meta name="description" content="beResponse CQA title page">
+	<meta name="description" content="beResponse CQA project">
     <meta name="author" content="Ilya Holtz and Vladimir Dzhorniuk">
 	<title>beResponse</title>
 
@@ -23,7 +23,7 @@
 
  </head>
  
- <body ng-controller="NewQuestionListCtrl">
+ <body>
 
     <nav class="navbar navbar-inverse">
       <div class="container">
@@ -34,13 +34,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">beResponse</a>
+          <a class="navbar-brand" href="#/">beResponse</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#/about">About</a></li>
-            <li><a href="#/contact">Contact</a></li>
+            <li class="active"><a href="#/">New Questions</a></li>
+            <li><a href="#/existing">Top-Rated Questions</a></li>
+            <li><a href="#/leaderboard">Top-Rated Users</a></li>
+            <li><a href="#/topics-list">Topics</a></li>
+            <li><a href="#/about"></a>About</li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -54,13 +56,13 @@
             </div>
             <div class="col-md-4">
               <div class="row current-user-row">
-                <a href="#" class="user-mini thumbnail">
+                <a href="#/users/1" class="user-mini thumbnail">
                  <table>
                    <tr>
                      <td class="user-properties-mini">
-                        <a href="#"><h3>Cheburator</h3></a>
-                        <a href="#"><img src="../img/cheburator.gif" alt="user leaderboard avatar"></a>
-                        <p>User Rating 6/7</p>
+                        <a href="#/users/1"><h3></h3>Cheburator</a>
+                        <a href="#/users/1"><img src="../img/cheburator.gif" alt="user leaderboard avatar"></a>
+                        <p>User Rating 1.2</p>
                      </td>
                      <td class="user-topics-mini">
                         <ul>
@@ -76,7 +78,7 @@
                 </a> <!-- user mini -->
               </div>
               <div class="row">
-                <a class="btn btn-primary text-center btn-lg" href="#" role="button">Ask Your Question</a>
+                <a class="btn btn-primary text-center btn-lg" href="#/ask-your" role="button">Ask Your Question</a>
               </div>
             </div>
           </div>
@@ -92,7 +94,7 @@
    <footer>
       <div class="container ask-your">    <!-- Ask your question container -->
         <div class="row"> 
-            <a class="btn btn-primary text-center btn-lg" href="#" role="button">Ask Your Question</a>
+            <a class="btn btn-primary text-center btn-lg" href="#/ask-your" role="button">Ask Your Question</a>
           </div>
       </div>        <!-- Ask your question container -->
 	</footer>
@@ -102,12 +104,13 @@
   <!-- Bootstrap javascript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     
-    <!-- Angular -->
-
+  <!-- AngularJS -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <!--Angular.js Route-->
   <script src="bower_components/angular-route/angular-route.js"></script>
-<!--   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-route.js
-"></script> -->
+  <!--Angular.js Resource-->
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+
   <script src="js/controllers.js"></script>
 
  </body>
