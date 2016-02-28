@@ -1,0 +1,52 @@
+
+<div class="question-mini">
+  <div class="row">  <!-- Question head mini -->
+    <div class="col-md-4">
+      <h4 class="username-askes"><a href="#">{{question.username}}</a> askes:</h4>
+    </div>
+    <div class="col-md-8 q-time-mini">
+      <p>at {{question.time}}</p>
+    </div>
+  </div>  <!-- Question head mini -->
+
+  <div class="media">
+    <div class="media-left">
+      <a href="#">
+        <img class="media-object" src="{{question.userphoto}}" alt="{{question.username}} avatar">
+      </a>
+    </div>
+    <div class="media-body question-body-mini">
+      <h3 class="media-heading"><a href="#">{{question.title}}</a></h3>
+      <p>{{question.text}}</p>
+
+        <div class="media first-reply">
+          <div class="media-left">
+            <a href="#">
+              <img class="media-object" src="{{question.replies[0].userphoto}}" alt="first reply user avatar">
+            </a>
+          </div>
+          <div class="media-body first-reply-body">
+            <h4 class="username-says"><a href="#">{{question.replies[0].username}}</a> says:</h4>
+            <p>{{question.replies[0].text}}</p>
+          </div>                  
+        </div>
+    </div>
+    <div class="media-right ">
+      <table class="media-object q-rating-bar">
+        <tr><a ng-click="rateIt('Question',question.id,'1')" class="rate-up"><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a></tr>
+        <tr><p class="rating-text">{{question.rating}}</p></tr>
+        <tr><a ng-click="rateIt('Question',question.id,'-1')" class="rate-down"> <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></a></tr>
+      </table>
+    </div>
+  </div> 
+  <div class="row topics-row-mini">  <!-- Question topics mini  -->
+    <ul>
+      <li><a href="#"><span class="label label-default">{{question.topics[0]}}</span></li></a></li>
+      <li><a href="#"><span class="label label-default">{{question.topics[1]}}</span></li></a></li>
+      <li><a href="#"><span class="label label-default">{{question.topics[2]}}</span></li></a></li>
+      <li><a href="#"><span class="label label-default">{{question.topics[3]}}</span></li></a></li>
+      <li><a href="#"><span class="label label-default">{{question.topics[4]}}</span></li></a></li>
+    </ul>
+  </div>   <!-- Question topics mini  -->
+
+</div>    <!-- .question-mini  -->

@@ -217,7 +217,7 @@ Events:
 Furture plan:
 	 DONE MAke the QuestionListCtrl ready for getting info from server by RESTful API
 	 DONE Make the AskNewCtrl ready for adding new question to Database
-	 - Replace all #/links to HTML5 format
+	 DONE Replace all #/links to HTML5 format
 	 - Manage a place to hold the current user in
 	 - Integrate LogIn and Register operations into the app
 	 - design pagination on the question/topics

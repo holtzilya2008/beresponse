@@ -10,6 +10,10 @@
 var beResponseApp = angular.module('beResponseApp', ['ngRoute','ngResource']);
 
 beResponseApp.config(['$routeProvider', '$locationProvider', function($routeProvide, $locationProvider){
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false
+  });
   $routeProvide
       .when('/',{
         templateUrl:'html/questions-list.html',
@@ -52,6 +56,8 @@ beResponseApp.config(['$routeProvider', '$locationProvider', function($routeProv
       });
 }]);
 
+/************************************** Services *****************************/
+
 /* Questions Factory 
    Will handle Question Objects 
    Will be used in Question Lists or in single question
@@ -66,7 +72,37 @@ beResponseApp.factory('QuestionRes', [
   }
 ]);
 
-beResponseApp.controller('NewQuestionListCtrl',['$scope','$http','$location','QuestionRes', function($scope,$http,$location,QuestionRes) {$scope.title = 'New Questions';
+// app.service('productService', function() {
+//   var productList = [];
+
+//   var addProduct = function(newObj) {
+//       productList.push(newObj);
+//   };
+
+//   var getProducts = function(){
+//       return productList;
+//   };
+
+//   return {
+//     addProduct: addProduct,
+//     getProducts: getProducts
+//   };
+
+// });
+
+beResponseApp.service('rateService', ['QuestionRes', function(){
+    var rate = function(type,Id,sign){
+      console.log(type,' - ',Id,' Rated ',sign);
+    };
+    return {
+      rate: rate
+    };
+  
+}]);
+
+/****************************************************************** Services */
+
+beResponseApp.controller('NewQuestionListCtrl',['$scope','$http','$location','QuestionRes','rateService', function($scope,$http,$location,QuestionRes,rateService) {$scope.title = 'New Questions';
 
     QuestionRes.query({questionId:'questions'},function(data){
       $scope.questions = data;
@@ -88,6 +124,14 @@ beResponseApp.controller('NewQuestionListCtrl',['$scope','$http','$location','Qu
     // $http.get('json/questions.json').success(function(data, status, headers, config) {
     //     $scope.questions = data;
     // });
+    console.log('New Questions -  rateService added!');
+    $scope.rateIt = function(type,id,sign){
+      /* type: 'Question' or 'Answer'
+       * id: questionId or answerId
+       * sign:  +1 or -1 
+       */
+       rateService.rate(type,id,sign);
+    };
 }]);
 
 //Ask Your Question Controller
@@ -95,19 +139,40 @@ beResponseApp.controller('AskYourCtrl',['$scope','$http', '$location','QuestionR
   //alert('pizda');
   $scope.submitQuestion = function(){
 
-      $scope.newQuestion = new QuestionRes();
-      $scope.newQuestion.$save({questionId:'q1'},function(){
+      QuestionRes.save({questionId:'q1'},$scope.newQuestion,function(){ //successcb
         console.log('We saved new question!!');
         $location.path('/');
+     },function(error){  //errorcb
+        alert('Error! Question submission failed!');
+        console.log('Questiion submission failed - ',error.status);
+        $location.path('/ask-your');
      });
+
+
+     //        $scope.newQuestion.$save({questionId:'q1'},function(){ //successcb
+     //    console.log('We saved new question!!');
+     //    $location.path('/');
+     // },function(error){  //errorcb
+     //    alert('Error! Question submission failed!');
+     //    console.log('Questiion submission failed - ',error.status);
+     //    $location.path('/ask-your');
+     // });
   };
 }]);
 
 //Browse Existing Questions Controller
-beResponseApp.controller('ExistingCtrl',['$scope','$http', '$location','QuestionRes', function($scope, $http, $location,QuestionRes) {
+beResponseApp.controller('ExistingCtrl',['$scope','$http', '$location','QuestionRes','rateService', function($scope, $http, $location,QuestionRes,rateService) {
     QuestionRes.query({questionId:'questions'},function(data){
       $scope.questions = data;  //This is happening on success
     });
+    console.log('rateService added!');
+    $scope.rateIt = function(type,id,sign){
+      /* type: 'Question' or 'Answer'
+       * id: questionId or answerId
+       * sign:  +1 or -1 
+       */
+       rateService.rate(type,id,sign);
+    };
 }]);
 
 //Leaderboard Controller

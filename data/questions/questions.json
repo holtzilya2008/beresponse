@@ -1,6 +1,7 @@
 [
     {
         "username": "Eskimos1", 
+        "id": "1001",
         "time": "24/02/2016 21:32",
         "userphoto": "img/tux.png", 
         "title": "Pochemu eskimos ebet kokos?", 
@@ -17,6 +18,7 @@
     }, 
     {
         "username": "Eskimos2", 
+        "id": "1002",
         "time": "24/02/2016 21:33",
         "userphoto": "img/tux.png", 
         "title": "Otkuda berutsa deti???", 
@@ -30,6 +32,23 @@
 	        	 "text": "Xuy ego znaet..."
 	        	}
         	]
+    },
+    {
+        "username": "Xuy", 
+        "id": "1003",
+        "time": "24/02/2016 21:50",
+        "userphoto": "img/tux.png", 
+        "title": "Eshe kakayata huynya, ya blyat zaebalsa pisat etu poeben", 
+        "text": "prosto interesuyus",
+        "rating": "1.2",
+        "topics": ["Davay popizdim","Xuyna","xueta polnaya","Kusssammok!!!","Sfatum Ci"],
+        "replies": [
+                {
+                 "username": "Cheburator", 
+                 "userphoto": "img/cheburator.gif", 
+                 "text": "Da, Hagai dalbaeb!"
+                }
+            ]
     }
 ]
 
