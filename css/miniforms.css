@@ -52,7 +52,13 @@
 }
 
 .first-reply p{
-	background-color: rgb(211,211,211);  /*lightgrey*/
+	background-color: rgb(113,113,198);  /*sgi slateblue*/
+	padding: 1% 1% 1% 1%;
+	color: rgb(255,255,255); /* White */
+}
+
+.rating-text {
+	background-color: rgb(255,255,255);
 }
 
 /* =========================================================================
@@ -77,3 +83,40 @@
 		.user-topics-mini ul li{
 			margin-bottom: 2px;
 		}
+
+
+/* =========================================================================
+	Answer mini form
+   ========================================================================= */		
+
+.answer{
+	font-family: Verdana, Geneva, sans-serif;
+	margin: 1% 1% 1% 1%;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 5px;
+	border-color: rgb(0,0,238); /* blue2 */
+}
+
+   .answer p{
+		background-color: rgb(113,113,198);  /*sgi slateblue*/
+		padding: 1% 1% 1% 1%;
+		color: rgb(255,255,255); /* White */
+	}
+
+	.answer .media-right p{
+		background-color: rgb(255,255,255); /* White */
+		color: rgb(0,0,0);
+	}
+
+/* =========================================================================
+	Reply-box mini form
+   ========================================================================= */		
+
+.reply-box-holder{
+	margin: 3% 3% 3% 3%;
+}
+
+.reply-holder-mini{
+	margin: 1% 1% 1% 1%;
+}

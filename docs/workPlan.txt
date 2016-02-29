@@ -221,6 +221,8 @@ Furture plan:
 	 DONE Add the Rating service
 	 DONE Manage a place to hold the current user in
 	 DONE Integrate LogIn and Register operations into the app
+	 - Finish writing request services
 	 - design pagination on the question/topics
 	 - Design the QuestionFull List and work on the Reply issue
-	 - Finish design and check if all requirements are checked
+	 - Design LeaderBoard
+	 - Design topics list

@@ -16,20 +16,26 @@
       </a>
     </div>
     <div class="media-body question-body-mini">
-      <h3 class="media-heading"><a href="#">{{question.title}}</a></h3>
+      <h3 class="media-heading"><a href="/data/questions/{{question.id}}">{{question.title}}</a></h3>
       <p>{{question.text}}</p>
 
         <div class="media first-reply">
           <div class="media-left">
             <a href="#">
-              <img class="media-object" src="{{question.replies[0].userphoto}}" alt="first reply user avatar">
+              <img class="media-object" src="{{question.answers[0].userphoto}}" alt="first reply user avatar">
             </a>
           </div>
           <div class="media-body first-reply-body">
-            <h4 class="username-says"><a href="#">{{question.replies[0].username}}</a> says:</h4>
-            <p>{{question.replies[0].text}}</p>
-          </div>                  
+            <h4 class="username-says"><a href="#">{{question.answers[0].username}}</a> says:</h4>
+            <p>{{question.answers[0].text}}</p>
+          </div>             
+              
         </div>
+        <div class="reply-holder-mini">
+          <div ng-include="'/html/miniforms/reply-box.html'" ></div>
+                <button class="btn btn-primary text-center btn-sm" role="button" ng-click="showReplyBox()" ng-show="!replyShow" >Reply to this Question</button>
+        </div>
+
     </div>
     <div class="media-right ">
       <table class="media-object q-rating-bar">
@@ -41,11 +47,7 @@
   </div> 
   <div class="row topics-row-mini">  <!-- Question topics mini  -->
     <ul>
-      <li><a href="#"><span class="label label-default">{{question.topics[0]}}</span></li></a></li>
-      <li><a href="#"><span class="label label-default">{{question.topics[1]}}</span></li></a></li>
-      <li><a href="#"><span class="label label-default">{{question.topics[2]}}</span></li></a></li>
-      <li><a href="#"><span class="label label-default">{{question.topics[3]}}</span></li></a></li>
-      <li><a href="#"><span class="label label-default">{{question.topics[4]}}</span></li></a></li>
+      <li ng-repeat="topic in question.topics"><a href="#"><span class="label label-default">{{topic}}</span></li></a></li>
     </ul>
   </div>   <!-- Question topics mini  -->
 

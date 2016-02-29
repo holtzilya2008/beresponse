@@ -1,6 +1,57 @@
 
     <div ng-include="'/html/miniforms/header.html'" ></div>
 
-<h1>Question full</h1>
+	   	<div class="container"> <!-- Main container -->
+	   		<div class="row">
+
+				<div class="question-mini">
+				  <div class="row">  <!-- Question head mini -->
+				    <div class="col-md-4">
+				      <h4 class="username-askes"><a href="#">{{question.username}}</a> askes:</h4>
+				    </div>
+				    <div class="col-md-8 q-time-mini">
+				      <p>at {{question.time}}</p>
+				    </div>
+				  </div>  <!-- Question head mini -->
+
+				  <div class="media">
+
+				    <div class="media-left">
+				      <a href="#">
+				        <img class="media-object" src="{{question.userphoto}}" alt="{{question.username}} avatar">
+				      </a>
+				    </div>
+				    <div class="media-body question-body-mini">
+				      <h3 class="media-heading"><a href="#">{{question.title}}</a></h3>
+				      <p>{{question.text}}</p>
+
+					<div ng-repeat="answer in question.answers">
+				    	<div ng-include="'/html/miniforms/answer.html'" ></div>
+					</div>
+					<div class="reply-box-holder">
+						<div ng-include="'/html/miniforms/reply-box.html'" ></div>
+       				    <button class="btn btn-primary text-center btn-md" role="button" ng-click="showReplyBox()" ng-show="!replyShow" >Reply to this Question</button>
+					</div>
+
+				    </div>
+				    <div class="media-right ">
+				      <table class="media-object q-rating-bar">
+				        <tr><a ng-click="rateQuestion(question.id,'1')" class="rate-up"><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a></tr>
+				        <tr><p class="rating-text">{{question.rating}}</p></tr>
+				        <tr><a ng-click="rateQuestion(question.id,'-1')" class="rate-down"> <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></a></tr>
+				      </table>
+				    </div>
+
+				  </div> <!-- media -->
+				  
+				  <div class="row topics-row-mini">  <!-- Question topics mini  -->
+				    <ul>
+				      <li ng-repeat="topic in question.topics"><a href="#"><span class="label label-default">{{topic}}</span></li></a></li>
+				    </ul>
+				  </div>   <!-- Question topics mini  -->
+
+			</div>    <!-- .question-mini  -->
+   		</div> <!-- Main row -->
+   	</div> <!-- main container -->
 
    	<div ng-include="'/html/miniforms/footer.html'" ></div>

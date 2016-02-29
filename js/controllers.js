@@ -74,8 +74,7 @@ beResponseApp.factory('QuestionRes', [
   '$resource', function($resource) {
     return $resource('data/questions/:questionId.:format', {
       questionId: '@_questionId',
-      format: 'json',
-      apiKey: 'someKeyThis'
+      format: 'json'
     });
   }
 ]);
@@ -119,8 +118,8 @@ beResponseApp.service('rateService', ['QuestionRes', function(QuestionRes){
 beResponseApp.service('sessionService', ['QuestionRes', function(){    
 
     var currentUser = null;
-    var currentUserId = 0;
-    var isUserSet = false;
+    var currentUserId = 1;
+    var isUserSet = true;
 
     var checkCurrentUser = function(){
       console.log('sessionService checkCurrentUser');
@@ -181,13 +180,29 @@ beResponseApp.controller('NewQuestionListCtrl',['$scope','$http','$location','Qu
     }
     /******************************************************** Session Check */
 
-    QuestionRes.query({questionId:'questions'},function(data){
+    QuestionRes.query({questionId:'all'},function(data){ //success cb
+      console.log('Question List querry success!');
       $scope.questions = data;
+    },function(){                                        //Error cb
+      console.log('Question List querry ERROR!!!');
     });
 
     $scope.rateQuestion = function(questionId,sign){
         rateService.rateQuestion(questionId,sign);
     };
+
+    /* Reply box Handler *********************/
+    $scope.replyShow = false; 
+    $scope.showReplyBox = function(){
+      $scope.replyShow = true;
+    };
+    $scope.submitReply = function(questionId,replyText){
+      console.log('reply button pressed');
+      $scope.replyShow = false;
+    };
+    /********************* Reply box Handler */
+
+
 }]);
 
 //Ask Your Question Controller
@@ -239,13 +254,29 @@ beResponseApp.controller('ExistingCtrl',['$scope','$http','$location','QuestionR
     }
     /******************************************************** Session Check */
 
-    QuestionRes.query({questionId:'questions'},function(data){
+    QuestionRes.query({questionId:'all'},function(data){ //success cb
+      console.log('Exiting Question List querry success!');
       $scope.questions = data;
+    },function(){                                        //Error cb
+      console.log('Exiting Question List querry ERROR!!!');
     });
 
     $scope.rateQuestion = function(questionId,sign){
         rateService.rateQuestion(questionId,sign);
     };
+
+    /* Reply box Handler *********************/
+    $scope.replyShow = false;    
+    $scope.showReplyBox = function(){
+      $scope.replyShow = true;
+    };
+    $scope.submitReply = function(questionId,replyText){
+      console.log('reply button pressed');
+      $scope.replyShow = false;
+    };
+    /********************* Reply box Handler */
+
+
 }]);
 
 //Leaderboard Controller
@@ -306,7 +337,7 @@ beResponseApp.controller('UserProfileCtrl',['$scope','$http','sessionService', '
 }]);
 
 //Question full Controller
-beResponseApp.controller('QuestionsFullCtrl',['$scope','$http','sessionService', '$location', function($scope, $http, $location,sessionService) {
+beResponseApp.controller('QuestionsFullCtrl',['$scope','$http','$location','$routeParams','sessionService','QuestionRes', function($scope, $http, $location,$routeParams,sessionService,QuestionRes) {
   console.log('reached QuestionsFullCtrl');
     /* Session Check ********************************************************/
     $scope.isUserSet = sessionService.checkCurrentUser();
@@ -317,6 +348,27 @@ beResponseApp.controller('QuestionsFullCtrl',['$scope','$http','sessionService',
         $location.path('/login');
     }
     /******************************************************** Session Check */
+
+    QuestionRes.query({questionId: $routeParams.questionId},function(data){ //success cb
+      console.log('Question querry success!');
+      $scope.question = data[0];
+    },function(){                                        //Error cb
+      console.log('Question querry ERROR!!!');
+    });
+
+    /* Reply box Handler *********************/
+    $scope.replyShow = false;
+
+    $scope.showReplyBox = function(){
+      $scope.replyShow = true;
+    };
+
+    $scope.submitReply = function(questionId,replyText){
+      console.log('reply button pressed');
+      $scope.replyShow = false;
+    };
+    /********************* Reply box Handler */
+
 }]);
 
 //About Controller
