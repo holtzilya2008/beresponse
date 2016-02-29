@@ -1,5 +1,13 @@
-<div class="col-md-12" id="questions-list">
-  <div class="row" ng-repeat="question in questions">
-    <div ng-include="'/html/miniforms/question.html'" ></div>
-  </div>
-</div>  <!-- Questions list  -->
+    <div ng-include="'/html/miniforms/header.html'" ></div>
+   	
+   	<div class="container"> <!-- Main container -->
+   		<div class="row">
+			<div class="col-md-12" id="questions-list">
+			  <div class="row" ng-repeat="question in questions">
+			    <div ng-include="'/html/miniforms/question.html'" ></div>
+			  </div>
+			</div>  <!-- Questions list  -->
+   		</div> <!-- Main row -->
+   	</div> <!-- main container -->
+   	
+   	<div ng-include="'/html/miniforms/footer.html'" ></div>

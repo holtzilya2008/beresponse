@@ -1,0 +1,20 @@
+<!-- Answer -->
+
+<div class="media first-reply">
+	<div class="media-left">
+		<a href="#">
+		  <img class="media-object" src="{{answer.userphoto}}" alt="first reply user avatar">
+		</a>
+	</div>
+	<div class="media-body first-reply-body">
+		<h4 class="username-says"><a href="#">{{answer.username}}</a> says:</h4>
+		<p>{{answer.text}}</p>
+	</div>                  
+	<div class="media-right ">
+	  <table class="media-object q-rating-bar">
+	    <tr><a ng-click="rateAnswer(question.id,answer.id,'1')" class="rate-up"><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a></tr>
+	    <tr><p class="rating-text">{{answer.rating}}</p></tr>
+	    <tr><a ng-click="rateAnswer(question.id,answer.id,'-1')" class="rate-down"> <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></a></tr>
+	  </table>
+	</div>
+</div>

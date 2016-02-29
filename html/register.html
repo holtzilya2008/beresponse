@@ -1,58 +1,24 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
- <head>
-    <!-- Critical browser adjustment tags -->
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Page properties -->
-    <meta name="description" content="beResponse registration page">
-    <meta name="author" content="Ilya Holtz and Vladimir Dzhorniuk">
-    <title>miniforms</title>
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../css/register.css">
-    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
- </head>
-
-  <body>
-
-   <!--  The body of this page based on Bootstrap sign in template -->
+   <!--  Register -->
 
 	<!-- TODO : Add maximum characters to feilds where needed -->
+<div class="col-md-12 reg-container" >
+    <img src="../img/beresponse_logo_lg.png" alt="beResponse big Logo" class="logo-big">
+    <form class="register-form">
+        <h2 class="register-form-heading">Register and beResponse</h2>
+        <!-- Required Elements --> 
+        <label for="inputUser" class="sr-only">Username</label>
+        <input id="inputUser" class="form-control" placeholder="desired username" required="true" autofocus="true"  type="other">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input id="inputPassword" class="form-control" placeholder="desired Password" required="true" type="password">
+        <label for="inputNickname" class="sr-only">Nickname</label>
+        <input id="inputNickname" class="form-control" placeholder="desired Nickname" required="true" type="other">
+		<!-- Optional Elements --> 
+        <label for="inputDescription" class="sr-only">Description</label>
+		<textarea id="inputDescription" class="form-control" maxlength="300" rows="5" placeholder="What you can tell us about yourself?" ></textarea>
+        <label for="inputPhoto" class="sr-only">Photo URL</label>
+        <input id="inputPhoto" class="form-control" placeholder="image URL 50x50" required="false" type="other">
 
-    <div class="container reg-container">
-        <img src="../img/beresponse_logo_lg.png" alt="beResponse big Logo" class="logo-big">
-        <form class="register-form">
-            <h2 class="register-form-heading">Register and beResponse</h2>
-            <!-- Required Elements --> 
-            <label for="inputUser" class="sr-only">Username</label>
-            <input id="inputUser" class="form-control" placeholder="desired username" required="true" autofocus="true"  type="other">
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input id="inputPassword" class="form-control" placeholder="desired Password" required="true" type="password">
-            <label for="inputNickname" class="sr-only">Nickname</label>
-            <input id="inputNickname" class="form-control" placeholder="desired Nickname" required="true" type="other">
-			<!-- Optional Elements --> 
-            <label for="inputDescription" class="sr-only">Description</label>
-			<textarea id="inputDescription" class="form-control" maxlength="300" rows="5" placeholder="What you can tell us about yourself?" ></textarea>
-            <label for="inputPhoto" class="sr-only">Nickname</label>
-            <input id="inputPhoto" class="form-control" placeholder="image URL 50x50" required="false" type="other">
-
-
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-        </form>
-
-    </div> <!-- /container -->
-
-
-    <!-- Bootstrap javascript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-</body>
-</html>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    </form>
+</div>
