@@ -1,18 +1,14 @@
-<a href="/users/1" class="user-mini thumbnail">
+<a href="/users/{{user.userId}}" class="user-mini thumbnail">
  <table>
    <tr>
      <td class="user-properties-mini">
-        <a href="/users/1"><h3></h3>Cheburator</a>
-        <a href="/users/1"><img src="/img/cheburator.gif" alt="user leaderboard avatar"></a>
-        <p>User Rating 1.2</p>
+        <a href="/users/{{user.userId}}"><h3></h3>{{user.nickName}}</a>
+        <a href="/users/{{user.userId}}"><img src="{{user.userPhotoUrl}}" alt="user leaderboard avatar"></a>
+        <p>User Rating {{user.rating}}</p>
      </td>
      <td class="user-topics-mini">
         <ul>
-          <li><a href="/"><span class="label label-default">Topic1</span></li></a>
-          <li><a href="/"><span class="label label-default">velikiy cheburator nah </span></li></a>
-          <li><a href="/"><span class="label label-default">Topic3</span></li></a>
-          <li><a href="/"><span class="label label-default">Topic4</span></li></a>
-          <li><a href="/"><span class="label label-default">Topic5</span></li></a>
+          <li ng-repeat="userTopic in user.topics"><a href="/leaderboard"><span class="label label-default">{{userTopic}}</span></li></a>
         </ul>
      </td>
    </tr>

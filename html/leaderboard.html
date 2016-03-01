@@ -1,9 +1,13 @@
 <div ng-include="'/html/miniforms/header.html'" ></div>
    	<div class="container"> <!-- Main container -->
    		<div class="row">
-			<h1>LeaderBoard</h1>
+			<div class="leaderboard">
+				<del class="user-holder" ng-repeat="user in users">
+					<div ng-include="'/html/miniforms/user.html'" ></div>
+				</del>
+			</div>
    		</div> <!-- Main row -->
-   	</div> <!-- main container -->			
+   	</div> <!-- main container -->
 
 <div ng-include="'/html/miniforms/footer.html'" ></div>
 

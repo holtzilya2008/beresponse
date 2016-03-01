@@ -223,6 +223,6 @@ Furture plan:
 	 DONE Integrate LogIn and Register operations into the app
 	 - Finish writing request services
 	 - design pagination on the question/topics
-	 - Design the QuestionFull List and work on the Reply issue
+	 DONE Design the QuestionFull List and work on the Reply issue
 	 - Design LeaderBoard
 	 - Design topics list

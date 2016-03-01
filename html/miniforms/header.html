@@ -6,7 +6,22 @@
       </div>
       <div class="col-md-4">
         <div class="row current-user-row">
-          <div ng-include="'/html/miniforms/user.html'" ></div>
+          <a href="/users/{{currentUser.userId}}" class="user-mini thumbnail">
+           <table>
+             <tr>
+               <td class="user-properties-mini">
+                  <a href="/users/{{currentUser.userId}}"><h3></h3>{{currentUser.nickName}}</a>
+                  <a href="/users/{{currentUser.userId}}"><img src="{{currentUser.userPhotoUrl}}" alt="user leaderboard avatar"></a>
+                  <p>User Rating {{currentUser.rating}}</p>
+               </td>
+               <td class="user-topics-mini">
+                  <ul>
+                    <li ng-repeat="userTopic in currentUser.topics"><a href="/leaderboard"><span class="label label-default">{{userTopic}}</span></li></a>
+                  </ul>
+               </td>
+             </tr>
+           </table> 
+          </a> <!-- user mini -->         
         </div>
         <div class="row">
           <a class="btn btn-primary text-center btn-lg" href="/ask-your" role="button">Ask Your Question</a>
