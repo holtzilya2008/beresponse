@@ -221,8 +221,16 @@ Furture plan:
 	 DONE Add the Rating service
 	 DONE Manage a place to hold the current user in
 	 DONE Integrate LogIn and Register operations into the app
-	 - Finish writing request services
+	 DONE Finish writing request services
 	 - design pagination on the question/topics
 	 DONE Design the QuestionFull List and work on the Reply issue
-	 - Design LeaderBoard
-	 - Design topics list
+	 DONE Design LeaderBoard
+	 DONE Design topics list
+
+
+03/03/2016
+
+	- Pagination
+	- First Reply Rating, First Reply show, First Reply expand
+	- All the 10, 50 chars bounds
+	- check user photo url 

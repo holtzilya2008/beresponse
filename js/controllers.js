@@ -59,9 +59,9 @@ beResponseApp.config(['$routeProvider', '$locationProvider', function($routeProv
         templateUrl:'html/register.html',
         controller:'RegisterCtrl'
       })
-      .when('/about',{
-        templateUrl:'html/about.html',
-        controller:'AboutCtrl'
+      .when('/session',{
+        templateUrl:'html/session.html',
+        controller:'SessionCtrl'
       })
       .otherwise({
         redirectTo: '/'
@@ -101,6 +101,46 @@ beResponseApp.service('rateService', ['ServerRes', function(ServerRes){
     };
 }]);
 
+beResponseApp.service('dateService', [function(){
+    
+    var currentDate = null;
+    var dateString = '';
+    var timeString = '';
+
+    var updateCurrentDate = function(){
+      currentDate = new Date();
+      var day = currentDate.getDate();
+      var mounth = currentDate.getMonth()+1;
+      var year = currentDate.getFullYear();
+      var hours = currentDate.getHours();
+      var min = currentDate.getMinutes();
+      var sec = currentDate.getSeconds();
+
+      dateString = day+'/'+mounth+'/'+year;
+      timeString = hours+':'+min+':'+sec;
+    };
+
+    var getFullDate = function(){
+      return currentDate;
+    };
+
+    var getDate = function(){
+      return dateString;
+    };
+
+    var getTime = function(){
+      return timeString;
+    };
+
+
+    return {
+      updateCurrentDate: updateCurrentDate,
+      getFullDate: getFullDate,
+      getDate: getDate,
+      getTime: getTime
+    };
+}]);
+
 beResponseApp.service('sessionService', ['ServerRes', function(ServerRes){    
 
     var currentUser = null;
@@ -130,73 +170,57 @@ beResponseApp.service('sessionService', ['ServerRes', function(ServerRes){
         return loginOperation;
     };
 
-    var isLoggedIn = function(){
-      console.log('sessionService isLoggedIn');
-      return allowAccess;
-    };
-
     var getCurrentUserMini = function(){
       console.log('sessionService getCurrentUserMini');
       return currentUser;
     };
 
-    var login = function(user){   // Called by LoginCtrl or RegisterCtrl with received data
-      console.log('sessionService login');
-      if(user){
-        currentUser = user;
-        allowAccess = true;
-        loginOperation = false;
-      }else{
-        currentUser = null;
-        allowAccess = false;
-      }
-      return allowAccess;
+    var setAllowAccess = function(value){
+      allowAccess = value;
     };
 
-    var close = function(){
-      console.log('sessionService close');
-      currentUser = null;
-      allowAccess = false;
-      loginOperation = false;
-    }
+    var isAllowAccess = function(){
+      return allowAccess;
+    };
 
     return {
       checkSessionOnServer: checkSessionOnServer,
       setLoginOperation: setLoginOperation,
       isLoginOperation: isLoginOperation,
-      isLoggedIn: isLoggedIn,
       getCurrentUserMini: getCurrentUserMini,
-      login: login,
-      close: close
+      setAllowAccess: setAllowAccess,
+      isAllowAccess: isAllowAccess
     };
 }]);
 
 
 /****************************************************************** Services */
 
-beResponseApp.run(['$rootScope', '$location', 'sessionService', function ($rootScope, $location, sessionService) {    
+beResponseApp.run(['$rootScope', '$location', 'sessionService','ServerRes', function ($rootScope, $location, sessionService,ServerRes) {    
      $rootScope.$on('$routeChangeStart', function (event) {
-          if(!sessionService.isLoginOperation()){
-             sessionService.checkSessionOnServer();
-             if (!sessionService.isLoggedIn()) {
-                 console.log('DENY');
-                 event.preventDefault();
-                 sessionService.setLoginOperation(true);
-                 $location.path('/login');
-             }
-             else {
-                 sessionService.setLoginOperation(false);
-                 console.log('ALLOW');
-             }
-          }else{
-              console.log('ALLOW LOGIN OPERATION');
-          }
+        if(!sessionService.isAllowAccess()){
+            console.log('current pathe is ', $location.path());
+            if($location.path() == '/login'){
+              console.log('ALLOW LOGIN');
+            }
+            else if($location.path() == '/register'){
+              console.log('ALLOW REGISTER');
+            }else if($location.path() == '/session'){
+              console.log('ALLOW SESSION CHECK');
+            }else{
+                  $rootScope.currentPath = $location.path();
+                  event.preventDefault();
+                  $location.path('/session');
+            }
+        }else{
+          console.log('ALLOW!');
+        }
      });
 }]);
 
-beResponseApp.controller('NewQuestionListCtrl',['$scope','$http','$location','ServerRes','rateService','sessionService', function($scope,$http,$location,ServerRes,rateService,sessionService) {$scope.title = 'New Questions';
+beResponseApp.controller('NewQuestionListCtrl',['$scope','$http','$location','ServerRes','rateService','sessionService','dateService', function($scope,$http,$location,ServerRes,rateService,sessionService,dateService) {$scope.title = 'New Questions';
     console.log('reached NewQuestionListCtrl');
-    $scope.currentUser = sessionService.getCurrentUserMini();
+    sessionService.setAllowAccess(false);
     console.log($scope.currentUser);
 
     ServerRes.query({id:'questions'},function(data){ //success cb
@@ -221,17 +245,21 @@ beResponseApp.controller('NewQuestionListCtrl',['$scope','$http','$location','Se
     };
     /********************* Reply box Handler */
 
-
+    $scope.getCurrentDate = function(){
+      dateService.updateCurrentDate();
+      console.log('current Date is - ', dateService.getDate());
+      console.log('current Time is - ', dateService.getTime());
+      console.log('full Date Value is - ', dateService.getFullDate());
+    };
 }]);
 
 //Ask Your Question Controller
 beResponseApp.controller('AskYourCtrl',['$scope','$http', '$location','sessionService','ServerRes', function($scope, $http, $location,sessionService,ServerRes) {
     console.log('reached AskYourCtrl');
-
-    $scope.currentUser = sessionService.getCurrentUserMini();
+    sessionService.setAllowAccess(false);
     console.log($scope.currentUser);
 
-  $scope.submitQuestion = function(){
+    $scope.submitQuestion = function(){
 
       ServerRes.save({id:'q1'},$scope.newQuestion,function(){ //successcb
         console.log('We saved new question!!');
@@ -257,14 +285,13 @@ beResponseApp.controller('AskYourCtrl',['$scope','$http', '$location','sessionSe
 //Browse Existing Questions Controller
 beResponseApp.controller('ExistingCtrl',['$scope','$http','$location','ServerRes','rateService','sessionService',function($scope, $http, $location,ServerRes,rateService,sessionService) {
   console.log('reached ExistingCtrl');
-
-    $scope.currentUser = sessionService.getCurrentUserMini();
+    sessionService.setAllowAccess(false);
     console.log($scope.currentUser);
 
     ServerRes.query({id:'questions'},function(data){ //success cb
       console.log('Exiting Question List querry success!');
       $scope.questions = data;
-    },function(){                                        //Error cb
+    },function(){                                     //Error cb
       console.log('Exiting Question List querry ERROR!!!');
     });
 
@@ -290,7 +317,7 @@ beResponseApp.controller('ExistingCtrl',['$scope','$http','$location','ServerRes
 beResponseApp.controller('LeaderboardCtrl',['$scope','$http', '$location','ServerRes','sessionService', function($scope, $http, $location,ServerRes,sessionService) {
     console.log('reached LeaderboardCtrl');
 
-    $scope.currentUser = sessionService.getCurrentUserMini();
+    sessionService.setAllowAccess(false);
     console.log($scope.currentUser);
 
     ServerRes.query({id:'users'},function(data){ //success cb
@@ -303,11 +330,18 @@ beResponseApp.controller('LeaderboardCtrl',['$scope','$http', '$location','Serve
 }]);
 
 //Browse Questions by Topics Controller
-beResponseApp.controller('TopicsListCtrl',['$scope','$http', '$location','sessionService', function($scope, $http, $location,sessionService) {
+beResponseApp.controller('TopicsListCtrl',['$scope','$http', '$location','sessionService','ServerRes', function($scope, $http, $location,sessionService,ServerRes) {
     console.log('reached TopicsListCtrl');
 
-    $scope.currentUser = sessionService.getCurrentUserMini();
+    sessionService.setAllowAccess(false);
     console.log($scope.currentUser);
+
+    ServerRes.query({id:'questions'},function(data){ //success cb
+      console.log('Topics List querry success!');
+      $scope.topics = data;
+    },function(){                                        //Error cb
+      console.log('Topics List querry ERROR!!!');
+    });    
 
 }]);
 
@@ -315,7 +349,7 @@ beResponseApp.controller('TopicsListCtrl',['$scope','$http', '$location','sessio
 beResponseApp.controller('QuestionsOnTopicCtrl',['$scope','$http', '$location','sessionService', function($scope, $http, $location,sessionService) {
     console.log('reached QuestionsOnTopicCtrl');
 
-    $scope.currentUser = sessionService.getCurrentUserMini();
+    sessionService.setAllowAccess(false);
     console.log($scope.currentUser);
 }]);
 
@@ -323,7 +357,7 @@ beResponseApp.controller('QuestionsOnTopicCtrl',['$scope','$http', '$location','
 beResponseApp.controller('UserProfileCtrl',['$scope','$http','sessionService', '$location', function($scope, $http, $location,sessionService) {
   console.log('reached UserProfileCtrl');
 
-  $scope.currentUser = sessionService.getCurrentUserMini();
+  sessionService.setAllowAccess(false);
   console.log($scope.currentUser);
 }]);
 
@@ -331,7 +365,7 @@ beResponseApp.controller('UserProfileCtrl',['$scope','$http','sessionService', '
 beResponseApp.controller('QuestionsFullCtrl',['$scope','$http','$location','$routeParams','sessionService','ServerRes', function($scope, $http, $location,$routeParams,sessionService,ServerRes) {
   console.log('reached QuestionsFullCtrl');
 
-    $scope.currentUser = sessionService.getCurrentUserMini();
+    sessionService.setAllowAccess(false);
     console.log($scope.currentUser);
 
     ServerRes.query({id: $routeParams.questionId},function(data){ //success cb
@@ -360,14 +394,15 @@ beResponseApp.controller('QuestionsFullCtrl',['$scope','$http','$location','$rou
 beResponseApp.controller('AboutCtrl',['$scope','$http','sessionService', '$location', function($scope, $http, $location,sessionService) {
   console.log('reached AboutCtrl');
 
-    $scope.currentUser = sessionService.getCurrentUserMini();
+    sessionService.setAllowAccess(false);
     console.log($scope.currentUser);
 }]);
 
 // Login Controller
 beResponseApp.controller('LoginCtrl',['$scope','$http', '$location','ServerRes','sessionService', function($scope, $http, $location,ServerRes,sessionService) {
   console.log('reached LoginCtrl');
-  
+  sessionService.setAllowAccess(false);
+
   if(!sessionService.isLoginOperation){
     console.log('BUG - reached LoginCtrl when it is not Login Operation');
   }
@@ -392,7 +427,7 @@ beResponseApp.controller('LoginCtrl',['$scope','$http', '$location','ServerRes',
 // Register Controller
 beResponseApp.controller('RegisterCtrl',['$scope','$http', '$location','sessionService','ServerRes', function($scope, $http, $location,sessionService,ServerRes) {
   console.log('reached RegisterCtrl');
-
+  sessionService.setAllowAccess(false);
   if(!sessionService.isLoginOperation){
     console.log('BUG - reached RegisterCtrl when it is not Login Operation');
   }
@@ -409,14 +444,17 @@ beResponseApp.controller('RegisterCtrl',['$scope','$http', '$location','sessionS
 }]);
 
 
-// beResponseApp.controller('SessionCtrl',['$scope','$http','$location','ServerRes','sessionService', function($scope,$http,$location,ServerRes,sessionService) {
-//     console.log('reached SessionCtrl');
-//     if(sessionService.checkCurrentUser() == true){
-//         $scope.isUserSet = true;
-//         $scope.currentUserId = sessionService.getCurrentUserId();
-//         $scope.currentUser = sessionService.getCurrentUserMini();
-//     }else{
-//         $location.path('/login');
-//     }
-//     console.log($scope.currentUser);
-// }]);
+beResponseApp.controller('SessionCtrl',['$scope','$http','$location','$rootScope','ServerRes','sessionService', function($scope,$http,$location,$rootScope,ServerRes,sessionService) {
+    console.log('reached SessionCtrl');
+
+        ServerRes.query({id:'current'},function(data){ //success cb
+        console.log('Session aprooved!');
+        $rootScope.currentUser = data[0];
+        sessionService.setAllowAccess(true);
+        $location.path($rootScope.currentPath);
+      },function(){
+        console.log('login error!');
+        $location.path('/login');      
+      }); 
+
+}]);

@@ -92,6 +92,8 @@ OnRateQuestion(Question,voterId,sign){ // sign = -1 or +1
 	user.submittedQuestionsAverage += (change/user.submittedQuestionsNumber);
 	user.rating+=0.2*(change/user.submittedQuestionsNumber);
 }
+./brs/onratequestion
+
 This event affects:
 	 - 	list of tomics (most popular topics): No need in immediate request, client-side sending regular message about question rating change
 	 -  order of exiting questions can change - request for exiting questions array
@@ -116,7 +118,9 @@ OnRateAnswer(Question,Answer,voterID,sign){
 	User ansUser = Database.getUserById(answer.userId);
 	ansUser.submittedAnswerAverage += sign/submitedAnsw4erNumber;
 	ansUser.rating += (sign/submitedAnsw4erNumber)*0.8;
-}
+} 
+./brs/onrateanswer
+
 This event affects:
 	 -	leaderBoard (immediate new request) // no eto poxuy po skolku mi ego ne gruzim
 	 - 	list of tomics (most popular topics): No need in immediate request, client-side sending regular message about question rating change
@@ -126,34 +130,45 @@ Answer Rate request to server {answerId,sign}
 
 submitQuestion - Request{title,text,date,time,userId,topics} 
 submitQuestion - Response{Question}
+./brs/submitquestion
 
 Answer - Request{text,date,time,userId,questionId}
 Answer - Response(Answer)
+./brs/submitanswer
 
 Get20UsersToLeaderBoard - Request {}
 Get20UsersToLeaderBoard - Response {Array users[20]}
+./brs/getuserleaderboard
 
 Get20newQuestions - Request {page-number}
 Get20newQuestions - Response {Array questions[20]}
+./brs/getnewlysubmittedquestions
 
 Get20TopRatedQuestions - Request {page-number}
 Get20TopRatedQuestions - Response {Array questions[20]}
+./brs/gettopratedquestions
 
 Get5LastAskedQuestions - Request {}
 Get5LastAskedQuestions - Response {Array questions[5]}
+./brs/getlastaskedquestions
 
 Get5LastAnsweredQuestions - Request {}
 Get5LastAnsweredQuestions - Response {Array questions[5], Array answers[5]}
+./brs/getlastansweredquestions
 
 Get20MostPopularTopics - Request {page-nubmer}
 Get20MostPopularTopics - Request {Array topice[20]}
+./brs/getmostpopulartopics
 
 Signin - Request {username, password} //after all the "cosmetic" checks
 signIn - Response {UserMini};
+./brs/login
 
 Register - Request{username,nickname,password,description,userPhotoUrl};
 Register - Response{UserMini};
+./brs/register
 
 Get20QuestionsByTopic - Request{topicId,page-number}
 Get20QuestionsByTopic - Response {Array questions[20]}
+./brs/getquestionsbytopic
 

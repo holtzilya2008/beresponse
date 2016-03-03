@@ -1,10 +1,13 @@
 
-
     <div ng-include="'/html/miniforms/header.html'" ></div>
     
    	<div class="container"> <!-- Main container -->
    		<div class="row">
-			<h1>Topics List</h1>
+			<h1 class="topics-page-heading">Our Topics</h1>
+			<ul class="topics-list">
+				<a href="/data/topics/{{topic.topicID}}"><li ng-repeat="topic in topics">{{topic.topicName}}</li></a>
+			</ul>
+
    		</div> <!-- Main row -->
    	</div> <!-- main container -->
 
